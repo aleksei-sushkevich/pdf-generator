@@ -71,10 +71,10 @@
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
-            <field>Name</field>
+            <field>Id</field>
             <operator>EqualTo</operator>
             <value>
-                <stringValue>Success Motors Prices</stringValue>
+                <stringValue>01s5i000003pZ3JAAU</stringValue>
             </value>
         </filters>
         <getFirstRecordOnly>true</getFirstRecordOnly>
