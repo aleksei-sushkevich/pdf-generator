@@ -31,8 +31,8 @@
     <recordCreates>
         <name>Create_Opportunity_Products</name>
         <label>Create Opportunity Products</label>
-        <locationX>233</locationX>
-        <locationY>349</locationY>
+        <locationX>240</locationX>
+        <locationY>381</locationY>
         <inputAssignments>
             <field>OpportunityId</field>
             <value>
@@ -63,8 +63,8 @@
     <recordLookups>
         <name>Get_Price_Book</name>
         <label>Get Price Book</label>
-        <locationX>751</locationX>
-        <locationY>349</locationY>
+        <locationX>747</locationX>
+        <locationY>379</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Get_Price_Book_Entry</targetReference>
@@ -85,8 +85,8 @@
     <recordLookups>
         <name>Get_Price_Book_Entry</name>
         <label>Get Price Book Entry</label>
-        <locationX>510</locationX>
-        <locationY>349</locationY>
+        <locationX>504</locationX>
+        <locationY>379</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Opportunity_Products</targetReference>
@@ -131,6 +131,13 @@
             <operator>EqualTo</operator>
             <value>
                 <booleanValue>true</booleanValue>
+            </value>
+        </filters>
+        <filters>
+            <field>Product__c</field>
+            <operator>IsNull</operator>
+            <value>
+                <booleanValue>false</booleanValue>
             </value>
         </filters>
         <object>Lead</object>
