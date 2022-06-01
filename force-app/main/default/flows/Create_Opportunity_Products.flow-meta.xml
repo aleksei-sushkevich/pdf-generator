@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Flow xmlns="http://soap.sforce.com/2006/04/metadata">
     <apiVersion>54.0</apiVersion>
+    <constants>
+        <name>PriceBookId</name>
+        <dataType>String</dataType>
+        <value>
+            <stringValue>01s5i000003pZ3JAAU</stringValue>
+        </value>
+    </constants>
     <formulas>
         <name>GetUnitPrice</name>
         <dataType>Number</dataType>
@@ -61,32 +68,10 @@
         <storeOutputAutomatically>true</storeOutputAutomatically>
     </recordCreates>
     <recordLookups>
-        <name>Get_Price_Book</name>
-        <label>Get Price Book</label>
-        <locationX>747</locationX>
-        <locationY>379</locationY>
-        <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
-        <connector>
-            <targetReference>Get_Price_Book_Entry</targetReference>
-        </connector>
-        <filterLogic>and</filterLogic>
-        <filters>
-            <field>Id</field>
-            <operator>EqualTo</operator>
-            <value>
-                <stringValue>01s5i000003pZ3JAAU</stringValue>
-            </value>
-        </filters>
-        <getFirstRecordOnly>true</getFirstRecordOnly>
-        <object>Pricebook2</object>
-        <queriedFields>Id</queriedFields>
-        <storeOutputAutomatically>true</storeOutputAutomatically>
-    </recordLookups>
-    <recordLookups>
         <name>Get_Price_Book_Entry</name>
         <label>Get Price Book Entry</label>
-        <locationX>504</locationX>
-        <locationY>379</locationY>
+        <locationX>345</locationX>
+        <locationY>196</locationY>
         <assignNullValuesIfNoRecordsFound>false</assignNullValuesIfNoRecordsFound>
         <connector>
             <targetReference>Create_Opportunity_Products</targetReference>
@@ -96,7 +81,7 @@
             <field>Pricebook2Id</field>
             <operator>EqualTo</operator>
             <value>
-                <elementReference>Get_Price_Book.Id</elementReference>
+                <elementReference>PriceBookId</elementReference>
             </value>
         </filters>
         <filters>
@@ -116,7 +101,7 @@
         <locationX>629</locationX>
         <locationY>48</locationY>
         <connector>
-            <targetReference>Get_Price_Book</targetReference>
+            <targetReference>Get_Price_Book_Entry</targetReference>
         </connector>
         <filterLogic>and</filterLogic>
         <filters>
