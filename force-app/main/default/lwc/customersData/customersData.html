@@ -1,0 +1,42 @@
+<template>
+    <lightning-card>
+        <div class="accordion-wrapper">
+            <lightning-accordion 
+                    class="accordion"
+                    onsectiontoggle={handleToggleSection}
+                    active-section-name="B">
+                    <template for:each={data} for:item="item" for:index="index">
+                        <lightning-accordion-section key={item.id} name={item.Label} label={item.Label}>
+                            <p>
+                                ffff
+                            </p>
+                        </lightning-accordion-section>  
+                    </template>
+            </lightning-accordion>
+        </div>
+        <div class="pagination-menu">
+            <lightning-layout horizontal-align="space">
+                <lightning-layout-item flexibility="auto">
+                    <lightning-button 
+                        label="Previous"
+                        disabled={previousDisabled} 
+                        icon-name="utility:chevronleft" 
+                        onclick={previousHandler}>
+                    </lightning-button>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto">
+                    <div class="pagination-font"><p>Page {page} of {totalPage}</p></div>
+                </lightning-layout-item>
+                <lightning-layout-item flexibility="auto">
+                    <lightning-button 
+                        label="Next" 
+                        icon-name="utility:chevronright" 
+                        icon-position="right"
+                        disabled={nextDisabled}
+                        onclick={nextHandler}>
+                    </lightning-button>
+                </lightning-layout-item>
+            </lightning-layout>
+        </div>
+    </lightning-card>
+</template>
