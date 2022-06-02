@@ -34,19 +34,19 @@
         <processMetadataValues>
             <name>originalFormula</name>
             <value>
-                <stringValue>DATETIMEVALUE(TEXT(TODAY()+3)+&quot; &quot;+&apos;10:00:00&apos;)</stringValue>
+                <stringValue>DATETIMEVALUE(TEXT(TODAY()+3)+&quot; &quot;+&apos;17:00:00&apos;)</stringValue>
             </value>
         </processMetadataValues>
-        <name>formula_2_myRule_1_A1_7259645968</name>
+        <name>formula_2_myRule_1_A1_1537992119</name>
         <dataType>DateTime</dataType>
-        <expression>DATETIMEVALUE(TEXT(TODAY()+3)+&quot; &quot;+&apos;10:00:00&apos;)</expression>
+        <expression>DATETIMEVALUE(TEXT(TODAY()+3)+&quot; &quot;+&apos;17:00:00&apos;)</expression>
     </formulas>
     <formulas>
         <name>formula_myRule_1</name>
         <dataType>Boolean</dataType>
         <expression>true</expression>
     </formulas>
-    <interviewLabel>Schedule_task-4_InterviewLabel</interviewLabel>
+    <interviewLabel>Schedule_task-12_InterviewLabel</interviewLabel>
     <label>Schedule task</label>
     <processMetadataValues>
         <name>ObjectType</name>
@@ -78,6 +78,42 @@
         <label>Call reminder</label>
         <locationX>100</locationX>
         <locationY>200</locationY>
+        <inputAssignments>
+            <processMetadataValues>
+                <name>dataType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>isRequired</name>
+                <value>
+                    <booleanValue>false</booleanValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideLabel</name>
+                <value>
+                    <stringValue>Reminder Set</stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>leftHandSideReferenceTo</name>
+                <value>
+                    <stringValue></stringValue>
+                </value>
+            </processMetadataValues>
+            <processMetadataValues>
+                <name>rightHandSideType</name>
+                <value>
+                    <stringValue>Boolean</stringValue>
+                </value>
+            </processMetadataValues>
+            <field>IsReminderSet</field>
+            <value>
+                <booleanValue>true</booleanValue>
+            </value>
+        </inputAssignments>
         <inputAssignments>
             <processMetadataValues>
                 <name>dataType</name>
@@ -171,7 +207,7 @@
             </processMetadataValues>
             <field>ReminderDateTime</field>
             <value>
-                <elementReference>formula_2_myRule_1_A1_7259645968</elementReference>
+                <elementReference>formula_2_myRule_1_A1_1537992119</elementReference>
             </value>
         </inputAssignments>
         <inputAssignments>
