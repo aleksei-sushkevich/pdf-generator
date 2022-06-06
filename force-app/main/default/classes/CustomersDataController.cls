@@ -17,9 +17,15 @@ public with sharing class CustomersDataController {
     }
     
     @AuraEnabled
-    public static List<CustomerDataWrapper> getCustomersData(){
+    public static List<CustomerDataWrapper> getCustomersData(Id recordId){
+        Map<Id, Account> idToAccMap;
 
-        Map<Id, Account> idToAccMap = new Map<Id,Account>([SELECT Id, Name FROM Account LIMIT 50000]);
+        if(recordId == null){
+            idToAccMap = new Map<Id,Account>([SELECT Id, Name FROM Account LIMIT 50000]);
+        }else{
+            idToAccMap = new Map<Id,Account>([SELECT Id, Name FROM Account WHERE Id = :recordId]);
+        }
+
         Map<Id, Opportunity> idToOppsMap = new Map<Id, Opportunity>([SELECT Id,
                                                                             Name,
                                                                             CreatedDate, 

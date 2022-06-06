@@ -1,0 +1,9 @@
+.header-tab{     
+    height: 19px;
+    background: #ff5e00;
+}
+.header-content{
+    background: #0000001c;
+    height: 160px;
+    display: flex;
+}

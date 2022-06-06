@@ -1,4 +1,4 @@
-import { LightningElement, track } from "lwc";
+import { LightningElement, track, api } from "lwc";
 
 import getCustomersData from '@salesforce/apex/CustomersDataController.getCustomersData';
 import NAME_FIELD from '@salesforce/schema/OpportunityLineItem.Name';
@@ -35,8 +35,11 @@ const columns = [
 ];
 
 export default class CustomersData extends LightningElement {
+    
+    @api recordId;
 
     @track data;
+    @track recordData;
     @track columns = columns;
     @track products;
 
@@ -69,7 +72,7 @@ export default class CustomersData extends LightningElement {
     }
 
     getCustomersData(){
-        getCustomersData()        
+        getCustomersData({recordId: this.recordId})        
         .then(data => {
             let baseURL = 'https://'+location.host+'/';
             for(var i = 0; i < data.length; i++){
@@ -92,8 +95,12 @@ export default class CustomersData extends LightningElement {
                     };
                 })
             }
-            this.initialData = this.data;
-            this.processRecords(this.data);
+            if(this.recordId !== undefined){
+                this.recordData = this.data[0].Opps;
+            }else{
+                this.initialData = this.data;
+                this.processRecords(this.data);
+            }
         })
         .catch(error =>{
             this.error = error;
@@ -191,11 +198,14 @@ export default class CustomersData extends LightningElement {
 
         this.endingRecord = (this.endingRecord > this.totalRecountCount) ? this.totalRecountCount : this.endingRecord; 
 
+        console.log(this.searchStringSum);
         if(this.searchStringName === '' && this.searchStringSum === ''){
             this.data = this.initialData.slice(this.startingRecord, this.endingRecord);
         }else{
             this.data = this.filteredData.slice(this.startingRecord, this.endingRecord);
+            console.log(this.filteredData);
         }
+
     }
 
   
