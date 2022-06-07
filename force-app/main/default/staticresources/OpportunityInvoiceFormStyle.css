@@ -1,9 +1,209 @@
-.header-tab{     
+@page {
+    size: a4;
+    margin: 25mm;
+    @bottom-center {
+        content: "Page " counter(page) " of " counter(pages);
+    }
+}
+.line-header{     
     height: 19px;
-    background: #ff5e00;
+    background: rgb(255 87 34);
 }
 .header-content{
-    background: #0000001c;
+    background: #f7f7f7;
     height: 160px;
-    display: flex;
+}
+.logo-wrapper{
+    width: 13%;
+    margin-left: 3%;
+    margin-top: 6%;
+    float: left;
+}
+.company-info-wrapper{
+    margin-top: 3.78%;
+    margin-left: 2%;
+    float: left;
+}
+.company-name{
+    font-size: 20px;
+}
+.company-address{
+    font-size: 13px;
+}
+.opportunity-owner{
+    margin-top: 7%;
+    font-size: 15px;
+}
+.invoice-wrapper{
+    margin-right: 5%;
+    margin-top: 3%;
+    float: right;
+}
+.invoice-label{
+    font-size: x-large;
+    color: #a1a1a1;
+    text-align: center;
+}
+.invoice-date{
+    border-bottom: 1px solid #a1a1a1;
+    font-size: 15px;
+    text-align: center;
+    color: rgb(51 63 79);
+    font-weight: bold;
+    margin-top: 6%;
+}
+.invoice-numb{
+    border-bottom: 1px solid #a1a1a1;
+    font-size: 15px;
+    text-align: center;
+    color: rgb(51 63 79);
+    font-weight: bold;
+    margin-top: 6%;
+}
+.footer-label{
+    text-align: center;
+    color: white;
+    font-size: small;
+}
+.body-box{
+    padding: 2%;
+}
+.bill-label{
+    border-bottom: 1px solid #a1a1a1;
+    font-size: 15px;
+    color: rgb(51 63 79);
+    font-weight: bold;
+}
+.bill-content{
+    margin-top: 0.5%;
+    font-size: 12px;
+    color: black;
+    font-weight: bold;
+}
+.table-wrapper{
+    margin-top: 5%;
+}
+.tr-header{
+    font-size: 15px;
+    white-space: nowrap;
+    width: 100%;
+    height: 25px;
+    background: rgb(255 87 34);
+    color: white;
+}
+.th-name{
+    text-align: center;
+    width: 45%;
+    float: left;
+    padding-top: 0.5%;
+}
+.th-qty{
+    text-align: center;
+    width: 15%;
+    float: left;
+    padding-top: 0.5%;
+}
+.th-unit{
+    text-align: center;
+    width: 20%;
+    float: left;
+    padding-top: 0.5%;
+}
+.th-total{
+    text-align: center;
+    float: right;
+    padding-top: 0.5%;
+}
+.td-name{
+    float: left;
+    font-size: 13px;
+    padding-left: 2px;
+    height: 22px;
+    border-left: 1px solid #a1a1a1;
+    padding-right: 5px;
+    color: black;
+    font-weight: bold;
+    width: 45%;
+    align-items: flex-end;
+}
+.td-qty{
+    float: left;
+    font-size: 13px;
+    height: 22px;
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    width: 15%;
+    align-items: flex-end;
+    justify-content: center;
+}
+.td-unit{
+    float: left;
+    font-size: 13px;
+    height: 22px;
+    padding-right: 5px;
+    color: black;
+    font-weight: bold;
+    text-align: right;
+    width: 20%;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+.td-total{
+    font-size: 13px;
+    height: 22px;
+    padding-right: 5px;
+    color: black;
+    font-weight: bold;
+    text-align: right;
+    align-items: flex-end;
+    justify-content: flex-end;
+    float: right;
+}
+.tr-body-1{
+    height: 22px;
+    background: #f7f7f7;
+}
+.tr-body-2{
+    height: 22px;
+}
+.table-footer{
+    height: 40px;
+}
+.balance-label{
+    float: left;
+    width: 80%;
+    text-align: right;
+    padding-top: 2%;
+    font-size: medium;
+    color: rgb(51 63 79);
+    font-weight: bold;
+}
+.balance-value{
+    float: right;
+    text-align: center;
+    padding-top: 2%;
+    font-size: large;
+    color: black;
+    font-weight: bold;
+    width: 17.9%;
+    background: rgb(244 204 204);
+    border-bottom: 1px solid #000000;
+}
+.tr-body-1>div{
+    border-right: 1px solid #a1a1a1;
+}
+.tr-body-wr>div:first-child{
+    border-top: 1px solid #a1a1a1;
+}
+.tr-body-wr>div:last-child{
+    border-bottom: 1px solid #a1a1a1;
+}
+.tr-body-2>div{
+    border-right: 1px solid #a1a1a1;
+}
+.line-footer{     
+    height: 19px;
+    background: rgb(255 87 34);
+    margin-top: 5%;
 }
