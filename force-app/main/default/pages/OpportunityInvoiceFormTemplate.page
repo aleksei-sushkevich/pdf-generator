@@ -1,0 +1,94 @@
+<apex:page standardController="Opportunity" extensions="OpportunityInvoiceFormController" renderas="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
+    <html>
+        <head>
+            <apex:stylesheet value="{!URLFOR($Resource.OpportunityInvoiceFormStyle)}"/>
+        </head>
+        <body>
+            <apex:repeat value="{!product}" var="prod">
+                <div class="header-box">
+                    <div class="line-header"></div>
+                    <div class="header-content">
+                        <div class="logo-wrapper">
+                            <img src="{!$Resource.Logo}" width="100%"/>
+                        </div>
+                        <div class="company-info-wrapper">
+                            <div class="company-name">
+                                {!$Organization.Name}
+                            </div>
+                            <div class="company-address">
+                                {!$Organization.Country}, {!$Organization.City}, {!$Organization.Street}
+                            </div>
+                            <div class="opportunity-owner">
+                                {!opp.Owner.Name}
+                            </div>
+                        </div>
+                        <div class="invoice-wrapper">
+                            <div class="invoice-label">
+                                INVOICE
+                            </div>
+                            <div class="invoice-date">
+                                {!NOW()}
+                            </div>
+                            <div class="invoice-numb">
+                                {!opp.Ivoice_Number__c}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                    <div class="body-box">
+                    <div class="bill-wrapper">
+                        <div class="bill-label">
+                            BILL TO
+                        </div>
+                        <div class="bill-content">
+                            {!con.Contact.Name}
+                        </div>
+                        <div class="bill-content">
+                            {!con.Contact.Account.Name}
+                        </div>
+                        <div class="bill-content">
+                            {!con.Contact.Phone}
+                        </div>
+                        <div class="bill-content">
+                            {!con.Contact.Email}
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <div class="tr-header">
+                            <div class="th-name">PRODUCT NAME</div>
+                            <div class="th-qty">QTY</div>
+                            <div class="th-unit">UNIT PRICE</div>
+                            <div class="th-total">TOTAL</div>
+                        </div>
+                        <div class="tr-body-wr">
+                            <apex:variable var="idx" value="{!1}"/>
+                            <apex:variable var="count" value="{!1}"/>
+                            <apex:variable var="stopTable" value="true"/>
+                            <apex:repeat var="cases" value="{!product[prod]}">
+                                <div class="tr-body-{!idx}">
+                                    <div class="td-name">{!cases.Product2.Name}</div>
+                                    <div class="td-qty">{!CEILING(cases.Quantity)}</div>
+                                    <div class="td-unit">{!ROUND(cases.UnitPrice, 2)}</div>
+                                    <div class="td-total">{!ROUND(cases.TotalPrice, 2)}</div>
+                                </div>    
+                                <apex:variable var="idx" value="{!idx + 1}"/> 
+                                <apex:variable var="idx" value="{!IF((idx == 3), 1, 2)}"/> 
+                                <apex:variable var="count" value="{!count + 1}"/>
+                                <apex:variable var="stopTable" value="{!IF((count == 20), false, true)}"/>
+                            </apex:repeat> 
+                        </div>
+                    </div>
+                    <div class="table-footer">
+                        <div class="balance-label">Balance Due</div>
+                        <div class="balance-value">$ {!balance}</div>
+                    </div>
+                </div>
+                <div class="line-footer" style="margin-bottom : 170px">
+                    <div class="footer-label">
+                        {!$Organization.Name}
+                    </div>
+                </div>
+            </apex:repeat>
+        </body>
+    </html>
+</apex:page>

@@ -1,6 +1,5 @@
 public with sharing class OpportunityInvoiceFormController {
     
-    public String pdfName {get;set;}
     public Opportunity opp {get;set;}
     public OpportunityContactRole con {get;set;}
     public Map<Integer, List<OpportunityLineItem>> product {get;set;}
@@ -52,24 +51,5 @@ public with sharing class OpportunityInvoiceFormController {
         List<String> args = new String[]{'0','number','###,###,###'};
         balance = String.format(totalPrice.format(), args);
         balance = balance.Substring(0,balance.length()-1);
-    }
-
-    public PageReference savePDF() {
-        if(ApexPages.currentPage().getParameters().containsKey('generatepdf')){ 
-            return new PageReference('/' + this.opp.Id);
-        }
-        PageReference attachment = Page.OpportunityInvoiceForm;
-        attachment.getParameters().put('generatepdf','true');
-        attachment.getParameters().put('Id', opp.Id);
-        Attachment attach = new Attachment();
-        Blob body;
-        body = attachment.getContentAsPDF();
-        attach.Body = body;
-        attach.Name = opp.Ivoice_Number__c;
-        attach.IsPrivate = false;
-        attach.ParentId = opp.Id;
-        attach.ContentType = 'application/pdf';
-        insert attach;
-        return new PageReference('/' + this.opp.Id);
     }
 }

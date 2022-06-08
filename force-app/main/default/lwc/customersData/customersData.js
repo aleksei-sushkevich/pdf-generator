@@ -7,10 +7,6 @@ import UNITPRICE_FIELD from '@salesforce/schema/OpportunityLineItem.UnitPrice';
 import PRODUCT_OBJECT from '@salesforce/schema/OpportunityLineItem';
 
 
-const ERROR_TITLE   = 'Error';
-const ERROR_VARIANT = 'error';
-const SUCCESS_VARIANT = 'success';
-
 const columns = [
     {
         label: 'Opportunity Name',
@@ -42,6 +38,7 @@ export default class CustomersData extends LightningElement {
     @track recordData;
     @track columns = columns;
     @track products;
+    error;
 
     activeSection = [];
     isModal = false;
@@ -105,13 +102,6 @@ export default class CustomersData extends LightningElement {
         .catch(error =>{
             this.error = error;
             console.log(error);
-            this.dispatchEvent(
-                new ShowToastEvent({
-                    title: ERROR_TITLE,
-                    message: this.error.toString(),
-                    variant: ERROR_VARIANT
-                })
-            );
         });
     }
 
@@ -203,7 +193,6 @@ export default class CustomersData extends LightningElement {
             this.data = this.initialData.slice(this.startingRecord, this.endingRecord);
         }else{
             this.data = this.filteredData.slice(this.startingRecord, this.endingRecord);
-            console.log(this.filteredData);
         }
 
     }
