@@ -30,7 +30,7 @@
                                 {!NOW()}
                             </div>
                             <div class="invoice-numb">
-                                {!opp.Ivoice_Number__c}
+                                {!opp.Invoice_Number__c}
                             </div>
                         </div>
                     </div>

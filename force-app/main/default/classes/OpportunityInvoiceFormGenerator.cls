@@ -13,7 +13,7 @@ public with sharing class OpportunityInvoiceFormGenerator {
         Blob body;
         body = attachment.getContentAsPDF();
 
-        String title = [SELECT Ivoice_Number__c FROM Opportunity WHERE Id = :recordId LIMIT 1].Ivoice_Number__c;
+        String title = [SELECT Invoice_Number__c FROM Opportunity WHERE Id = :recordId LIMIT 1].Invoice_Number__c;
 
         List<ContentDocument> doc = [SELECT Id, Title FROM ContentDocument WHERE Title = :title];
         ContentVersion cv = new ContentVersion();

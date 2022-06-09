@@ -1,0 +1,12 @@
+<aura:component implements="force:lightningQuickAction,force:hasRecordId" access="global" controller="SendInvoiceController">
+	<aura:attribute name="recordId" type="String" />
+    <aura:attribute name="pdfId" type="String" />
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+	<c:sendInvoice recordId="{!v.recordId}" aura:id="childlwc"></c:sendInvoice>
+	<div style="margin-top: 3%; justify-content: center; display: flex;">
+		<lightning:fileCard fileId="{!v.pdfId}"/>
+	</div>
+	<div style="background-color:#16325c;padding:0.5rem; margin-top: 3%; justify-content: center; display: flex;">
+		<lightning:button variant="success" label="Send Email" title="Send Email" onclick="{!c.handleSendEmail}"/>
+	</div>
+</aura:component>

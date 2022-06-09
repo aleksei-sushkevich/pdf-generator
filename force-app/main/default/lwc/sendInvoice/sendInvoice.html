@@ -1,39 +1,33 @@
 <template>
-    <lightning-card>
-        <div class="slds-form">
-            <div style="background-color:#16325c;padding:0.5rem; margin-bottom: 2%;">
-                <div style="color:white; text-align: center;">INVOICE INFO</div>
+    <div class="slds-form">
+        <div style="background-color:#16325c;padding:0.5rem; margin-bottom: 2%;">
+            <div style="color:white; text-align: center;">INVOICE INFO</div>
+        </div>
+        <div style="margin-left: 5%; margin-right: 5%">
+            <div class="slds-form-element slds-form-element_stacked">
+            <label class="slds-form-element__label" for="stacked-input-id-01">Email Subject</label>
+            <div class="slds-form-element__control">
+                <input type="text" id="stacked-input-id-01" class="slds-input" value={subject} disabled/>
             </div>
-            <div style="margin-left: 5%; margin-right: 5%">
-                <div class="slds-form-element slds-form-element_stacked">
-                <label class="slds-form-element__label" for="stacked-input-id-01">Email Subject</label>
+            </div>
+            <div class="slds-form-element slds-form-element_stacked">
+            <label class="slds-form-element__label" for="stacked-input-id-02">Email Body</label>
+            <div class="slds-form-element__control">
+                <textarea id="stacked-input-id-02" class="slds-textarea" onchange={setBody}>{body}</textarea>
+            </div>
+            </div>
+            <div class="slds-form-element slds-form-element_stacked">
+                <label class="slds-form-element__label" for="stacked-input-id-01">Recipient's Name</label>
                 <div class="slds-form-element__control">
-                    <input type="text" id="stacked-input-id-01" class="slds-input" value={subject} disabled/>
-                </div>
-                </div>
-                <div class="slds-form-element slds-form-element_stacked">
-                <label class="slds-form-element__label" for="stacked-input-id-02">Email Body</label>
-                <div class="slds-form-element__control">
-                    <textarea id="stacked-input-id-02" class="slds-textarea" onchange={setBody}>{body}</textarea>
-                </div>
-                </div>
-                <div class="slds-form-element slds-form-element_stacked">
-                    <label class="slds-form-element__label" for="stacked-input-id-01">Recipient's Name</label>
-                    <div class="slds-form-element__control">
-                    <input type="text" id="stacked-input-id-03" class="slds-input" value={recipientName} disabled/>
-                    </div>
-                </div>
-                <div class="slds-form-element slds-form-element_stacked">
-                    <label class="slds-form-element__label" for="stacked-input-id-01">Recipient's Email</label>
-                    <div class="slds-form-element__control">
-                    <input type="text" id="stacked-input-id-04" class="slds-input" value={recipientEmail} disabled/>
-                    </div>
+                <input type="text" id="stacked-input-id-03" class="slds-input" value={recipientName} disabled/>
                 </div>
             </div>
-            <div style="background-color:#16325c;padding:0.5rem; margin-top: 3%; justify-content: center; display: flex;">
-                <button class="slds-button slds-button_inverse" onclick={openPDF}>View PDF</button>
-                <button class="slds-button slds-button_brand" onclick={sendEmail}>Send Email</button>
+            <div class="slds-form-element slds-form-element_stacked">
+                <label class="slds-form-element__label" for="stacked-input-id-01">Recipient's Email</label>
+                <div class="slds-form-element__control">
+                <input type="text" id="stacked-input-id-04" class="slds-input" value={recipientEmail} disabled/>
+                </div>
             </div>
         </div>
-    </lightning-card>
+    </div>
 </template>

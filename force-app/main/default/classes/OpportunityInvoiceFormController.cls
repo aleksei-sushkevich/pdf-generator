@@ -7,7 +7,7 @@ public with sharing class OpportunityInvoiceFormController {
 
 
     public OpportunityInvoiceFormController(ApexPages.StandardController stdController) {
-        List<String> fields = new List<String> {'Owner.Name', 'Ivoice_Number__c'};
+        List<String> fields = new List<String> {'Owner.Name', 'Invoice_Number__c'};
         stdController.addFields(fields);
         
         opp = (Opportunity)stdController.getRecord();

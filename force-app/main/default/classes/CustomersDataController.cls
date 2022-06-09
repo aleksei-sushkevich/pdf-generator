@@ -69,7 +69,9 @@ public with sharing class CustomersDataController {
             List<OpportunityWrapper> oppsAndProdList = new List<OpportunityWrapper>();
             for(Opportunity opp : accToOppsMap.get(acc)){
                 if(opp.isClosed){
-                    sumClosedOpp += opp.Amount;
+                    if(opp.Amount != null){
+                        sumClosedOpp += opp.Amount;
+                    }
                 }
                 OpportunityWrapper oppWrap = new OpportunityWrapper();
                 oppWrap.OpportunityItem = opp;

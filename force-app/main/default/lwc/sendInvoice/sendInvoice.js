@@ -1,7 +1,7 @@
-import { LightningElement, wire, track, api } from 'lwc';
+import { LightningElement, wire, api } from 'lwc';
 
 import getInvoiceData from '@salesforce/apex/SendInvoiceController.getInvoiceData';
-import { NavigationMixin } from 'lightning/navigation';
+import sendOpportunityInvoice from '@salesforce/apex/EmailHandler.sendOpportunityInvoice';
 
 
 export default class SendInvoice extends LightningElement {
@@ -14,6 +14,7 @@ export default class SendInvoice extends LightningElement {
     recipientName;
     subject;
     pdfId;
+    invNum;
 
 
     @wire(getInvoiceData, {recordId : '$recordId'})
@@ -24,10 +25,16 @@ export default class SendInvoice extends LightningElement {
             this.recipientName = data.RecipientName;
             this.subject = data.Subject + ' : ' + data.InvoiceNumb;
             this.pdfId = data.PDFId;
+            this.invNum = data.InvoiceNumb;
         }else if(error) {
             console.log(error);
             this.error = error;
         }
+    }
+
+    @api
+    sendEmail(){
+        sendOpportunityInvoice({body: this.body, subject: this.subject, recipientEmail: this.recipientEmail, pdfId: this.pdfId, invNum: this.invNum});
     }
 
 
@@ -35,21 +42,4 @@ export default class SendInvoice extends LightningElement {
         this.body = event.target.value;
     }
 
-    openPDF(){
-        console.log(this.pdfId);
-        this[NavigationMixin.Navigate]({
-            type: 'standard__namedPage',
-            attributes: {
-                pageName: 'filePreview'
-            },
-            state : {
-                recordIds: this.pdfId,
-                selectedRecordId: this.pdfId
-            }
-        })
-    }
-
-    sendEmail(){
-        console.log('send1132');
-    }
 }

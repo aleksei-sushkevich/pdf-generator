@@ -1,6 +1,6 @@
 public with sharing class SendInvoiceController {
 
-    private static final Id EMAIL_TEMPLATE_ID = '00X5i000000DiFKEA0';
+    public static final Id EMAIL_TEMPLATE_ID = '00X5i000000DiR4EAK';
 
     public class InvoiceWrapper{
         @AuraEnabled
@@ -29,11 +29,18 @@ public with sharing class SendInvoiceController {
         wrap.RecipientName = con.Contact.Name;
         wrap.RecipientEmail = con.Contact.Email;
 
-        wrap.InvoiceNumb = [SELECT Ivoice_Number__c FROM Opportunity WHERE ID =:recordId LIMIT 1].Ivoice_Number__c;
+        wrap.InvoiceNumb = [SELECT Invoice_Number__c FROM Opportunity WHERE ID =:recordId LIMIT 1].Invoice_Number__c;
         
         ContentDocumentLink file = [SELECT ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId = :recordId AND ContentDocument.Title = :wrap.InvoiceNumb LIMIT 1];
         wrap.PDFId = file.ContentDocumentId;
 
         return wrap;
     }
+
+    @AuraEnabled(cacheable=true)
+    public static Id getPdfId(Id recordId){
+        String invNumb = [SELECT Invoice_Number__c FROM Opportunity WHERE ID =:recordId LIMIT 1].Invoice_Number__c;
+        return [SELECT ContentDocumentId FROM ContentDocumentLink WHERE LinkedEntityId = :recordId AND ContentDocument.Title = :invNumb LIMIT 1].ContentDocumentId;
+    }
+
 }
