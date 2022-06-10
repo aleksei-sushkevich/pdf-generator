@@ -98,6 +98,7 @@
     padding-top: 0.5%;
 }
 .th-qty{
+    padding-left: 7px;
     text-align: center;
     width: 15%;
     float: left;
@@ -108,12 +109,13 @@
     width: 20%;
     float: left;
     padding-top: 0.5%;
+    padding-left: 10px;
 }
 .th-total {
     text-align: center;
-    width: 19%;
     float: right;
     padding-top: 0.5%;
+    padding-right: 20px;
 }
 .td-name{
     float: left;
@@ -207,4 +209,5 @@
     height: 19px;
     background: rgb(255 87 34);
     margin-top: 5%;
+    margin-bottom : 200px
 }

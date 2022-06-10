@@ -83,7 +83,7 @@
                         <div class="balance-value">$ {!balance}</div>
                     </div>
                 </div>
-                <div class="line-footer" style="margin-bottom : 170px">
+                <div class="line-footer">
                     <div class="footer-label">
                         {!$Organization.Name}
                     </div>
