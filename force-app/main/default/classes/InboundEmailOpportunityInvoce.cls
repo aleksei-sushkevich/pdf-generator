@@ -8,7 +8,7 @@ global class InboundEmailOpportunityInvoce implements Messaging.InboundEmailHand
             Opportunity opp = [SELECT Id, StageName FROM Opportunity WHERE Invoice_Number__c = :email.subject LIMIT 1];
             if(opp.StageName == 'Prospecting'){
                 switch on email.plainTextBody.replaceAll('\\n|\\r\\n', '') {
-                    when  'Approved'{
+                    when 'Approved'{
                         opp.StageName = nextStage(opp.StageName); 
                     }
                     when 'Rejected'{

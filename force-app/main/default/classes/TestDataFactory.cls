@@ -23,6 +23,15 @@ public with sharing class TestDataFactory {
         );
     }
 
+    public static OpportunityContactRole prepareOpportunityContactRole(Id conId, Id oppId){
+        return new OpportunityContactRole(
+            ContactId = conId,
+            OpportunityId = oppId,
+            IsPrimary = true,
+            Role = 'Decision Maker'
+        );
+    }
+
     public static OpportunityLineItem prepareOpportunityLineItem(Id oppId){
         Id pricebookId = Test.getStandardPricebookId();
 
@@ -55,5 +64,19 @@ public with sharing class TestDataFactory {
             PricebookEntryId = pbEntry,
             TotalPrice = 5 * 100.00
         );
+    }
+
+    public static void prepareContentDocument(Id recordId){
+        ContentVersion cv = new ContentVersion();
+        cv.PathOnClient = 'test.pdf';
+        cv.Title = 'test';
+        cv.VersionData = Blob.valueOf('Test Content');
+        insert cv;
+        Id conDocId = [SELECT ContentDocumentId FROM ContentVersion WHERE Id =:cv.Id].ContentDocumentId;
+        ContentDocumentLink cdl = new ContentDocumentLink();
+        cdl.ContentDocumentId = conDocId;
+        cdl.LinkedEntityId = recordId;
+        cdl.ShareType = 'V';
+        insert cdl;
     }
 }

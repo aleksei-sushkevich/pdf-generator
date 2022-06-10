@@ -8,19 +8,25 @@ public with sharing class OpportunityInvoiceFormController {
 
     public OpportunityInvoiceFormController(ApexPages.StandardController stdController) {
         List<String> fields = new List<String> {'Owner.Name', 'Invoice_Number__c'};
-        stdController.addFields(fields);
+        if(!Test.isRunningTest()){
+            stdController.addFields(fields);
+        }
         
         opp = (Opportunity)stdController.getRecord();
 
-        con = [SELECT ContactId, 
-                      Contact.Name, 
-                      Contact.Email, 
-                      Contact.Account.Name,
-                      Contact.Phone 
-                FROM  OpportunityContactRole 
-                WHERE OpportunityId = :opp.Id 
-                AND   IsPrimary = true 
-                LIMIT 1];
+        List<OpportunityContactRole> ocr = [SELECT ContactId, 
+                                                   Contact.Name, 
+                                                   Contact.Email, 
+                                                   Contact.Account.Name,
+                                                   Contact.Phone 
+                                            FROM   OpportunityContactRole 
+                                            WHERE  OpportunityId = :opp.Id 
+                                            AND    IsPrimary = true 
+                                            LIMIT  1];
+
+        if(ocr != null && !ocr.isEmpty()){
+            con = ocr[0];
+        }
 
         List<OpportunityLineItem> products = [SELECT Id, 
                                                     UnitPrice, 
@@ -36,18 +42,25 @@ public with sharing class OpportunityInvoiceFormController {
         Decimal totalPrice = 0;
         Integer count = 0;
         Integer intToMap = 0;
-        for(OpportunityLineItem pr : products){
-            productsForMap.add(pr);
-            count++;
-            if(count == 15){
-                productsMap.put(intToMap, productsForMap);
-                productsForMap = new List<OpportunityLineItem>();
-                intToMap++;
-                count = 0;
+        if(products != null && !products.IsEmpty()){
+            for(OpportunityLineItem pr : products){
+                productsForMap.add(pr);
+                count++;
+                if(count == 15){
+                    productsMap.put(intToMap, productsForMap);
+                    productsForMap = new List<OpportunityLineItem>();
+                    intToMap++;
+                    count = 0;
+                }else{
+                    productsMap.put(intToMap, productsForMap);
+                }
+                totalPrice += pr.TotalPrice;
             }
-            totalPrice += pr.TotalPrice;
+            product = productsMap;
+        }else{
+            product = new Map<Integer, List<OpportunityLineItem>>();
+            product.put(1, new List<OpportunityLineItem>());
         }
-        product = productsMap;
         List<String> args = new String[]{'0','number','###,###,###'};
         balance = String.format(totalPrice.format(), args);
         balance = balance.Substring(0,balance.length()-1);
