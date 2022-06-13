@@ -59,7 +59,7 @@ public with sharing class OpportunityInvoiceFormController {
             product = productsMap;
         }else{
             product = new Map<Integer, List<OpportunityLineItem>>();
-            product.put(1, new List<OpportunityLineItem>());
+            product.put(0, new List<OpportunityLineItem>());
         }
         List<String> args = new String[]{'0','number','###,###,###'};
         balance = String.format(totalPrice.format(), args);

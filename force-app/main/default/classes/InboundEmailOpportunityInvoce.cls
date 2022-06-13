@@ -9,12 +9,15 @@ global class InboundEmailOpportunityInvoce implements Messaging.InboundEmailHand
             if(opp.StageName == 'Prospecting'){
                 switch on email.plainTextBody.replaceAll('\\n|\\r\\n', '') {
                     when 'Approved'{
-                        opp.StageName = nextStage(opp.StageName); 
+                        opp.StageName = nextStage(opp.StageName);
                     }
                     when 'Rejected'{
                         opp.StageName = 'Closed Lost';
                     }
                 }
+                update opp;
+            }else if(email.plainTextBody.replaceAll('\\n|\\r\\n', '') == 'Rejected'){
+                opp.StageName = 'Closed Lost';
                 update opp;
             }
         }catch(Exception e){

@@ -35,6 +35,7 @@ public with sharing class CustomersDataController {
                                                                             isClosed
                                                                      FROM   Opportunity 
                                                                      WHERE  AccountId IN :idToAccMap.keyset()
+                                                                     AND    isClosed = true
                                                                      ]);
 
 
@@ -68,10 +69,8 @@ public with sharing class CustomersDataController {
             Decimal sumClosedOpp = 0;
             List<OpportunityWrapper> oppsAndProdList = new List<OpportunityWrapper>();
             for(Opportunity opp : accToOppsMap.get(acc)){
-                if(opp.isClosed){
-                    if(opp.Amount != null){
-                        sumClosedOpp += opp.Amount;
-                    }
+                if(opp.Amount != null){
+                    sumClosedOpp += opp.Amount;
                 }
                 OpportunityWrapper oppWrap = new OpportunityWrapper();
                 oppWrap.OpportunityItem = opp;

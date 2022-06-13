@@ -36,23 +36,25 @@
                     </div>
                 </div>
                     <div class="body-box">
-                    <div class="bill-wrapper">
-                        <div class="bill-label">
-                            BILL TO
+                    <apex:outputText rendered="{!IF((prod == 0), true, false)}">
+                        <div class="bill-wrapper">
+                            <div class="bill-label">
+                                BILL TO
+                            </div>
+                            <div class="bill-content">
+                                {!con.Contact.Name}
+                            </div>
+                            <div class="bill-content">
+                                {!con.Contact.Account.Name}
+                            </div>
+                            <div class="bill-content">
+                                {!con.Contact.Phone}
+                            </div>
+                            <div class="bill-content">
+                                {!con.Contact.Email}
+                            </div>
                         </div>
-                        <div class="bill-content">
-                            {!con.Contact.Name}
-                        </div>
-                        <div class="bill-content">
-                            {!con.Contact.Account.Name}
-                        </div>
-                        <div class="bill-content">
-                            {!con.Contact.Phone}
-                        </div>
-                        <div class="bill-content">
-                            {!con.Contact.Email}
-                        </div>
-                    </div>
+                    </apex:outputText>
                     <div class="table-wrapper">
                         <div class="tr-header">
                             <div class="th-name">PRODUCT NAME</div>
@@ -87,6 +89,9 @@
                     <div class="footer-label">
                         {!$Organization.Name}
                     </div>
+                </div>
+                <div class="page-break" style="page-break-before: always;">
+
                 </div>
             </apex:repeat>
         </body>
