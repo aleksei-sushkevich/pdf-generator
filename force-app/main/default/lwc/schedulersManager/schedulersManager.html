@@ -1,0 +1,70 @@
+<template>
+    <lightning-card>
+        <div class="slds-border_bottom header">
+            Batches Scheduler Manager
+        </div>
+        <div class="content">
+            <div class="slds-combobox_container">
+                <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open"  aria-expanded="true" aria-haspopup="listbox"  role="combobox">
+                    <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none"> 
+                        <label class="slds-form-element__label" for="batch">Batch Apex Class</label>   
+                        <lightning-input 
+                            id="batch"
+                            variant="label-hidden"
+                            name="batch-input"
+                            class="input-box validate" 
+                            placeholder={placeholder} 
+                            onblur={blurEvent} 
+                            onclick={showOptions}
+                            onkeyup={filterOptions} 
+                            value={searchString} 
+                            autocomplete="off">
+                        </lightning-input>
+                        <lightning-icon class="slds-input__icon icon-custom-style"  icon-name="utility:down"  size="x-small"  alternative-text="search"> </lightning-icon>
+                    </div>
+                    <template if:true={showDropdown}>
+                        <div id="listbox-id-1"  class="slds-dropdown slds-dropdown_length-5 slds-dropdown_fluid">
+                            <ul class="slds-listbox slds-listbox_vertical record-list-box"  role="presentation">
+                                <template for:each={batches}  for:item="option">
+                                    <template if:true={option.isVisible}>
+                                        <li key={option.value} data-id={option.value} onmousedown={selectItem} class="slds-listbox__item each-item">{option.label} </li>
+                                    </template>
+                                </template>
+                            </ul>
+                        </div>
+                    </template>
+                </div>
+            </div>
+            <div class="slds-form-element cron-string">
+                <label class="slds-form-element__label" for="form-element">
+                    <abbr class="slds-required" title="required">* </abbr>CRON String</label>
+                    <div class="slds-form-element__icon">
+                        <lightning-button-icon
+                            icon-name="utility:info"
+                            name="info"
+                            onblur={blurEvent}
+                            variant="bare"
+                            onclick={handleTooltip}>
+                        </lightning-button-icon>
+                        <template if:true={tooltip}>
+                            <div class="slds-popover slds-popover_tooltip slds-nubbin_bottom-left" role="tooltip" id="help">
+                                <div class="slds-popover__body">A cron expression is a string consisting of six or seven subexpressions (fields) that describe individual details of the schedule.</div>
+                            </div>
+                        </template>
+                    </div>
+                <lightning-input type="text" id="form-element" variant="label-hidden" value={scheduleValue} onchange={scheduleChange} required disabled={scheduleInputDisabled}></lightning-input>
+                <p><lightning-formatted-url value="https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_scheduler.htm" tooltip="Use https://developer.salesforce.com/docs/atlas.en-us.apexcode.meta/apexcode/apex_scheduler.htm" label="Read more about scheduling" target="_blank"></lightning-formatted-url></p>
+            </div>
+        </div>
+        <div class="slds-border_top"></div>
+        <div class="footer">
+            <lightning-button variant="brand" label="Run Once" title="Run Once" name="run-once" onclick={runOnce} disabled={runOnceDisabled} class="slds-m-left_x-small"></lightning-button>
+            <template if:true={abort}>
+                <lightning-button variant="destructive" label="Abort Batch" title="Abort Batch" name="abort-batch" disabled={scheduleBatchDisabled} onclick={abortBatch} class="slds-m-left_x-small"></lightning-button>
+            </template>
+            <template if:false={abort}>
+                <lightning-button variant="brand" label="Schedule Batch" title="Schedule Batch" name="schedule-batch" disabled={scheduleBatchDisabled} onclick={scheduleBatch} class="slds-m-left_x-small"></lightning-button>
+            </template>
+        </div>
+    </lightning-card>
+</template>

@@ -1,0 +1,58 @@
+.slds-dropdown {
+    padding:0px !important;
+}
+.record-list-box {
+    margin-top:0px !important;
+    overflow-y: scroll;
+}
+.slds-listbox li {
+    padding: .45rem 0.7rem !important;
+    display: flex;
+}
+.input-box input {
+    padding-left: 10px;
+}
+.each-item:hover {
+    background-color: #F1F1F1;
+    cursor: pointer;
+}
+::-webkit-scrollbar {
+    width: 7px;
+    height: 7px;
+}
+::-webkit-scrollbar-track {
+   display: none !important;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background: rgba(0,0,0,0.4);
+}
+.icon-custom-style{
+    margin-top: 5px;
+}
+.content{
+    margin: 4%;
+}
+.header{
+    height: 40px;
+    text-align: center;
+    font-size: 20px;
+    color: rgb(1, 68, 134);
+    font-weight: bold;
+}
+.footer{
+    padding: 1%;
+    align-items: flex-end;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+}
+.cron-string{
+    margin-top: 2%;
+}
+.slds-popover{
+    position: absolute;
+    top: -60px;
+    left: -15px;
+    width: max-content;
+}

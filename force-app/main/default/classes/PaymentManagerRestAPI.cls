@@ -22,5 +22,4 @@ global with sharing class PaymentManagerRestAPI {
         }
         insert newPayments;
     }   
-
 }
