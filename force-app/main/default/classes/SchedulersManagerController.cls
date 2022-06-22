@@ -20,7 +20,7 @@ public with sharing class SchedulersManagerController {
         List<SchedulerWrapper> lstToReturn = new List<SchedulerWrapper>();
         List<ApexClass> lstApexClasses = [SELECT Id, Name, Body FROM ApexClass WHERE NamespacePrefix = null];
         for(ApexClass it : lstApexClasses) {
-            if(it.Body.contains('Database.Batchable')) {
+            if(it.Body.contains('Database.Batchable') && it.Name != 'SchedulersManagerController') {
                 SchedulerWrapper wrap = new SchedulerWrapper();
                 wrap.BatchClassName = it.Name;
                 wrap.Scheduled = false;

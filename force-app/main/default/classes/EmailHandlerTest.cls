@@ -6,6 +6,9 @@ public with sharing class EmailHandlerTest {
         Account acc = TestDataFactory.prepareAccount();
         insert acc;
         TestDataFactory.prepareContentDocument(acc.Id);
+        Contact con = TestDataFactory.prepareContact(acc.Id);
+        con.Birthdate = Date.today();
+        insert con;
     }
     
     @isTest
@@ -20,6 +23,16 @@ public with sharing class EmailHandlerTest {
                 file.ContentDocumentId,
                 null
         );
+        Integer emailInvocations = Limits.getEmailInvocations();
+        Test.stopTest();
+        System.assertEquals(1, emailInvocations);
+    }
+
+    @isTest
+    static void sendHappyBirthdayEmailTest(){
+        List<Contact> cons = [SELECT Id, Name, Email FROM Contact];
+        Test.startTest();
+        EmailHandler.sendHappyBirthdayEmail(cons);
         Integer emailInvocations = Limits.getEmailInvocations();
         Test.stopTest();
         System.assertEquals(1, emailInvocations);

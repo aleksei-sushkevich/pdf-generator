@@ -34,4 +34,28 @@ public with sharing class EmailHandler {
         Messaging.sendEmail(mails);
 
     }
+
+    public static void sendHappyBirthdayEmail(List<Contact> cons){
+
+        List<Messaging.SingleEmailMessage> mails = new List<Messaging.SingleEmailMessage>();
+
+        EmailTemplate emailTemplate = [SELECT Id,
+                                              Subject,
+                                              Description,
+                                              HtmlValue,
+                                              Body
+                                       FROM   EmailTemplate 
+                                       WHERE  Name = 'Happy Birthday Greeting'];
+
+        for(Contact con : cons){
+            Messaging.SingleEmailMessage mail = new Messaging.SingleEmailMessage();
+            mail.setTargetObjectId(con.Id);
+            mail.setTemplateID(emailTemplate.Id);
+            mail.setToAddresses(new List<String>{con.Email});
+            mails.add(mail);
+        }
+
+        Messaging.sendEmail(mails);
+        
+    }
 }

@@ -10,6 +10,7 @@ public with sharing class TestDataFactory {
     public static Contact prepareContact(Id accId){
         return new Contact(
             LastName = 'Test Contact',
+            Email = 'test.email@gmail.com',
             AccountId = accId
         );
     }

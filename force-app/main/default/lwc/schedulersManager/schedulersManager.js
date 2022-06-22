@@ -193,7 +193,7 @@ export default class SchedulersManager extends LightningElement {
         .then( () =>{      
             this.dispatchEvent(
                 new ShowToastEvent({
-                    message:this.batches[this.index].label + ' was ran',
+                    message:this.batches[this.index].label + ' was launched',
                     variant: SUCCESS_VARIANT
                 })
             );

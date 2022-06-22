@@ -1,3 +1,6 @@
+/**
+*   Tested by : HappyBirthdayGreetingBatchTest
+**/
 global class ScheduleHappyBirthdayGreetingBatch implements Schedulable{
 
     global void execute(SchedulableContext sc) {
