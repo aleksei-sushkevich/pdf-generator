@@ -48,11 +48,17 @@
     justify-content: flex-end;
 }
 .cron-string{
-    margin-top: 2%;
+    margin-top: 5px;
 }
 .slds-popover{
     position: absolute;
     top: -60px;
     left: -15px;
     width: max-content;
+}
+.batch-name{
+    font-size: 17px;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 5px;
 }

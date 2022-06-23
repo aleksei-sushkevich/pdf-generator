@@ -1,10 +1,10 @@
 <template>
     <lightning-card>
         <div class="slds-border_bottom header">
-            Batches Scheduler Manager
+            {schedulerName}
         </div>
         <div class="content">
-            <div class="slds-combobox_container">
+            <!-- <div class="slds-combobox_container">
                 <div class="slds-combobox slds-dropdown-trigger slds-dropdown-trigger_click slds-is-open"  aria-expanded="true" aria-haspopup="listbox"  role="combobox">
                     <div class="slds-combobox__form-element slds-input-has-icon slds-input-has-icon_right" role="none"> 
                         <label class="slds-form-element__label" for="batch">Batch Apex Class</label>   
@@ -34,7 +34,9 @@
                         </div>
                     </template>
                 </div>
-            </div>
+            </div>  -->
+            <div class="batch-name">{batchName}</div>
+            <div class="description">{description}</div>
             <div class="slds-form-element cron-string">
                 <label class="slds-form-element__label" for="form-element">
                     <abbr class="slds-required" title="required">* </abbr>CRON String</label>
