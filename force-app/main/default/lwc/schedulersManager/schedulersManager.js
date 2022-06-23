@@ -61,6 +61,7 @@ export default class SchedulersManager extends LightningElement {
             //     }
             // })
             this.abort = data.Scheduled;
+            this.scheduleInputDisabled = data.Scheduled;
             this.scheduleValue = data.CronExpr ? data.CronExpr : DEFAULT_SCHEDULER;
             this.cronId = data.CronId;
         })         
